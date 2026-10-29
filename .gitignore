@@ -1,0 +1,11 @@
+.DS_Store
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/plugins/*/main.js
+.obsidian/plugins/*/styles.css
+inbox/_done/*.raw
+*.tmp
+.ingest.lock
+.morning.lock
+__pycache__/

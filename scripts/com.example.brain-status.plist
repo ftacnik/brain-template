@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!-- Hourly re-render of Home.md, Status.md and Waiting.md (no Claude, no commits), so the date rolls over
+     even on days without a run. Optional. Install as a copy with your home directory filled in
+     (launchd may skip symlinks at login); re-copy after editing:
+       sed "s#__HOME__#$HOME#g" ~/brain/scripts/com.example.brain-status.plist > ~/Library/LaunchAgents/com.example.brain-status.plist
+       launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.example.brain-status.plist -->
+<plist version="1.0">
+<dict>
+  <key>Label</key><string>com.example.brain-status</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/usr/bin/python3</string><string>-I</string>
+    <string>__HOME__/brain/scripts/status.py</string><string>render</string><string>--cron</string>
+  </array>
+  <key>StartInterval</key><integer>3600</integer>
+  <key>RunAtLoad</key><true/>
+  <key>LowPriorityIO</key><true/>
+  <key>StandardOutPath</key><string>/tmp/brain-status.log</string>
+  <key>StandardErrorPath</key><string>/tmp/brain-status.log</string>
+</dict>
+</plist>
